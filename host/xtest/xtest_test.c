@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2020, ARM Limited and Contributors. All rights reserved.
  * Copyright (c) 2014, STMicroelectronics International N.V.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,6 +19,7 @@
 #include <ta_crypt.h>
 #include <ta_os_test.h>
 #include <ta_rpc_test.h>
+#include <ta_tpm_log_test.h>
 #include <ta_sims_test.h>
 #include <ta_miss_test.h>
 #include <ta_sims_keepalive_test.h>
@@ -95,6 +97,7 @@ const TEEC_UUID create_fail_test_ta_uuid = TA_CREATE_FAIL_TEST_UUID;
 const TEEC_UUID ecc_test_ta_uuid = ECC_SELF_TEST_UUID;
 const TEEC_UUID pta_invoke_tests_ta_uuid = PTA_INVOKE_TESTS_UUID;
 const TEEC_UUID rpc_test_ta_uuid = TA_RPC_TEST_UUID;
+const TEEC_UUID tpm_log_test_ta_uuid = TA_TPM_LOG_TEST_UUID;
 const TEEC_UUID sims_test_ta_uuid = TA_SIMS_TEST_UUID;
 const TEEC_UUID miss_test_ta_uuid = TA_MISS_TEST_UUID;
 const TEEC_UUID sims_keepalive_test_ta_uuid = TA_SIMS_KEEP_ALIVE_TEST_UUID;

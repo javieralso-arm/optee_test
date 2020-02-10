@@ -88,6 +88,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/host/xtest \
 		$(LOCAL_PATH)/ta/enc_fs/include \
 		$(LOCAL_PATH)/ta/os_test/include \
 		$(LOCAL_PATH)/ta/rpc_test/include \
+		$(LOCAL_PATH)/ta/tpm_log_test/include \
 		$(LOCAL_PATH)/ta/sims/include \
 		$(LOCAL_PATH)/ta/miss/include \
 		$(LOCAL_PATH)/ta/sims_keepalive/include \

@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2020, ARM Limited and Contributors. All rights reserved.
  * Copyright (c) 2016, Linaro Limited
  * Copyright (c) 2014, STMicroelectronics International N.V.
  *
@@ -49,6 +50,9 @@ extern const unsigned int create_fail_test_ta_size;
 
 extern const char rpc_test_ta[];
 extern const unsigned int rpc_test_ta_size;
+
+extern const char tpm_log_test_ta[];
+extern const unsigned int tpm_log_test_ta_size;
 
 extern const char sims_test_ta[];
 extern const unsigned int sims_test_ta_size;
@@ -102,6 +106,7 @@ extern const TEEC_UUID crypt_user_ta_uuid;
 extern const TEEC_UUID os_test_ta_uuid;
 extern const TEEC_UUID create_fail_test_ta_uuid;
 extern const TEEC_UUID rpc_test_ta_uuid;
+extern const TEEC_UUID tpm_log_test_ta_uuid;
 extern const TEEC_UUID sims_test_ta_uuid;
 extern const TEEC_UUID miss_test_ta_uuid;
 extern const TEEC_UUID sims_keepalive_test_ta_uuid;

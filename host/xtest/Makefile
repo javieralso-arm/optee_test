@@ -113,6 +113,7 @@ CFLAGS += -I../../ta/crypt/include
 CFLAGS += -I../../ta/enc_fs/include
 CFLAGS += -I../../ta/os_test/include
 CFLAGS += -I../../ta/rpc_test/include
+CFLAGS += -I../../ta/tpm_log_test/include
 CFLAGS += -I../../ta/sims/include
 CFLAGS += -I../../ta/miss/include
 CFLAGS += -I../../ta/sims_keepalive/include

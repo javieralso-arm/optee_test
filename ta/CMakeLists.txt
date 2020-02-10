@@ -12,6 +12,7 @@ target_include_directories(${PROJECT_NAME}
 	INTERFACE enc_fs/include
 	INTERFACE os_test/include
 	INTERFACE rpc_test/include
+	INTERFACE tpm_log_test/include
 	INTERFACE sdp_basic/include
 	INTERFACE sha_perf/include
 	INTERFACE sims/include

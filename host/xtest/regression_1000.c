@@ -1,6 +1,7 @@
 /*
+ * Copyright (c) 2020, ARM Limited and Contributors. All rights reserved.
  * Copyright (c) 2014, STMicroelectronics International N.V.
- *
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License Version 2 as
  * published by the Free Software Foundation.
@@ -34,6 +35,7 @@
 #include <ta_miss_test.h>
 #include <ta_sims_keepalive_test.h>
 #include <ta_concurrent.h>
+#include <ta_tpm_log_test.h>
 #include <sdp_basic.h>
 #ifdef CFG_SECSTOR_TA_MGMT_PTA
 #include <pta_secstor_ta_mgmt.h>
@@ -1744,3 +1746,73 @@ static void xtest_tee_test_1022(ADBG_Case_t *c)
 }
 ADBG_CASE_DEFINE(regression, 1022, xtest_tee_test_1022,
 		"Test dlopen()/dlsym()/dlclose() API");
+
+static void xtest_tee_test_1023(ADBG_Case_t *c)
+{
+	TEEC_Session session = {};
+	uint32_t ret_orig = 0;
+
+	Do_ADBG_BeginSubCase(c, "TPM Test create session");
+	{
+		if (!ADBG_EXPECT_TEEC_SUCCESS(c,
+									xtest_teec_open_session(&session,
+										&tpm_log_test_ta_uuid,
+										NULL, &ret_orig)))
+    	{
+	    	Do_ADBG_Log(" Failed to create session");
+    		return;
+    	}
+	}
+	Do_ADBG_EndSubCase(c, "TPM Test create session");
+
+	Do_ADBG_BeginSubCase(c, "TPM Test command invocation");
+	{
+		TEEC_Operation op = TEEC_OPERATION_INITIALIZER;
+
+		if(ADBG_EXPECT_TEEC_SUCCESS(c, TEEC_InvokeCommand(&session, TA_TPM_LOG_TEST_CMD_GET_LOG,
+  														&op, &ret_orig)))
+    	{
+    		Do_ADBG_Log(" Access_TPM_EventLog: PASSED");
+    	}
+		else
+    	{
+    		Do_ADBG_Log(" Access_TPM_EventLog: FAIL");
+    	}
+	}
+	Do_ADBG_EndSubCase(c, "TPM Test command invocation");
+
+	Do_ADBG_BeginSubCase(c, "TPM Test invalid buffer");
+	{
+		TEEC_Operation op = TEEC_OPERATION_INITIALIZER;
+
+		if(ADBG_EXPECT_TEEC_SUCCESS(c, TEEC_InvokeCommand(&session, TA_TPM_LOG_TEST_CMD_NULL_BUF,
+  														&op, &ret_orig)))
+    	{
+    		Do_ADBG_Log(" Access_TPM_EventLog_invalid_buffer: PASSED");
+    	}
+		else
+    	{
+    		Do_ADBG_Log(" Access_TPM_EventLog_invalid_buffer: FAIL");
+    	}
+	}
+	Do_ADBG_EndSubCase(c, "TPM Test invalid buffer");
+
+	Do_ADBG_BeginSubCase(c, "TPM Test insufficient buffer size");
+	{
+		TEEC_Operation op = TEEC_OPERATION_INITIALIZER;
+
+		if(ADBG_EXPECT_TEEC_SUCCESS(c, TEEC_InvokeCommand(&session, TA_TPM_LOG_TEST_CMD_INS_SPACE,
+  														&op, &ret_orig)))
+    	{
+    		Do_ADBG_Log(" Access_TPM_EventLog_insufficient_space: PASSED");
+    	}
+		else
+    	{
+    		Do_ADBG_Log(" Access_TPM_EventLog_insufficient_space: FAIL");
+    	}
+	}
+	Do_ADBG_EndSubCase(c, "TPM Test insufficient buffer size");
+}
+
+ADBG_CASE_DEFINE(regression, 1023, xtest_tee_test_1023,
+		"Test TEE_TpmGETEventLog() API");
